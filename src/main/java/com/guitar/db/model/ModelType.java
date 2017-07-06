@@ -1,17 +1,10 @@
 package com.guitar.db.model;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-
-@Entity
+@Entity(name = "MODELTYPE")
 public class ModelType {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -20,7 +13,7 @@ public class ModelType {
 	private String name;	
 
 	@OneToMany(cascade=CascadeType.ALL)
-	@JoinColumn(name="MODEL_TYPE_ID")
+	@JoinColumn(name="MODELTYPE_ID")
 	private List<Model> models = new ArrayList<>();
 
 	public String getName() {

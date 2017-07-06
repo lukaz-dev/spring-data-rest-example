@@ -2,11 +2,11 @@ package com.guitar.db.repository;
 
 import com.guitar.db.model.Location;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 import java.util.List;
 
-@Repository
+@RepositoryRestResource(exported = false)
 public interface LocationJpaRepository extends JpaRepository<Location, Long> {
 
 //    @Query("select l from Location l where l.state like ?1%")

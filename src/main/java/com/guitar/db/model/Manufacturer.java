@@ -5,30 +5,28 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedNativeQuery(name = "Manufacturer.getAllThatSellAcoustics", 
-		query = "SELECT m.id, m.name, m.founded_Date, m.average_Yearly_Sales, m.location_id as headquarters_id, m.active "
+		query = "SELECT m.id, m.name, m.foundedDate, m.averageYearlySales, m.location_id as headquarters_id, m.active "
 	    + "FROM Manufacturer m "
 		+ "LEFT JOIN Model mod ON (m.id = mod.manufacturer_id) "
-		+ "LEFT JOIN Model_Type mt ON (mt.id = mod.model_type_id) "
+		+ "LEFT JOIN ModelType mt ON (mt.id = mod.modeltype_id) "
 	    + "WHERE (mt.name = ?)", resultClass = Manufacturer.class)
 public class Manufacturer {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Long id;
 
+	@NotNull
 	private String name;
+
+	@Column(name="FOUNDEDDATE")
 	private Date foundedDate;
+
+	@Column(name="AVERAGEYEARLYSALES")
 	private BigDecimal averageYearlySales;
 	private Boolean active;
 	
